@@ -19,7 +19,7 @@ activity_main.xml
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             android:gravity="center"
-            android:text="MainActivity_Details"
+            android:text="Login_Details"
             android:textSize="30dp" />
     </LinearLayout>
 
