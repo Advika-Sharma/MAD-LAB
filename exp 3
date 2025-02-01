@@ -145,6 +145,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -175,12 +176,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void performOperation(String operator) {
-        String num1Str = firstNumber.getText().toString();
-        String num2Str = secondNumber.getText().toString();
+        String num1Str = firstNumber.getText().toString().trim();
+        String num2Str = secondNumber.getText().toString().trim();
 
         // Check if input fields are not empty
         if (num1Str.isEmpty() || num2Str.isEmpty()) {
-            resultText.setText("Please enter both numbers");
+            Toast.makeText(this, "Please enter both numbers", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -211,3 +212,4 @@ public class MainActivity extends AppCompatActivity {
         resultText.setText(String.valueOf(result));
     }
 }
+
