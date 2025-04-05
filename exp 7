@@ -1,0 +1,71 @@
+Code For An Application to Play Video:
+
+.xml :
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btnplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:onClick="playvideo" />
+
+        <VideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+.java:
+
+package com.example.videoactps3;
+
+import androidx.appcompat.app.AppCompatActivity;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private VideoView vid;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        vid = findViewById(R.id.videoView);
+    }
+
+    public void playvideo(View v) {
+        String path = "android.resource://" + getPackageName() + "/" + R.raw.cityscape;
+        Uri videoUri = Uri.parse(path);
+
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(vid);
+
+        vid.setMediaController(mediaController);
+        vid.setVideoURI(videoUri);
+        vid.requestFocus();
+        vid.start();
+    }
+}
+
